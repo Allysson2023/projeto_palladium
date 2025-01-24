@@ -1,0 +1,83 @@
+{% extends "global/base.html" %}
+{% block content %}  
+    <div class="responsive-table">
+        <table class="contacts-table">
+            <caption class="table-caption" >
+                Moradores Ed. Palladium
+
+                <div class="search">
+                    <form action="{% url "contact:moradores_index_busca" %}" 
+                    method="GET">
+                        <input 
+                        type="text" 
+                        class="search-input"
+                        placeholder="Busca"
+                        id="search"
+                        name="q"
+                        value="{{ request.GET.q.strip }}"
+                        >
+                    </form>
+                </div>
+                
+                <a href="" class="header-link">
+                    <h2>Moradores Ed. Palladium</h2>
+                </a>
+            </caption>
+
+            <thead>
+                <tr class="table-row table-row-header">
+                    <th class="table-header">ID</th>
+                    <th class="table-header">Nome</th>
+                    <th class="table-header">Telefone</th>
+                    <th class="table-header">Apartamento</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for moradore in moradores %}
+                  <tr class="table-row">
+                    <td class="table-cel">
+                        {{ moradore.id }}
+                    </td>
+                    <td class="table-cel">
+                        <a href="{% url "contact:moradores_index_id" moradore.id   %}" 
+                        class="table-link"
+                        >
+                            {{ moradore.nome }}
+                        </a>
+                    </td>
+                    <td class="table-cel">
+                        
+                        {{ moradore.telefone }}
+                    </td>
+                    <td class="table-cel">
+                        {{ moradore.apartamento }}
+                    </td>
+                    
+                  </tr>
+                {% endfor %}        
+            </tbody>
+        </table>
+
+        {% if moradores %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if moradores.has_previous %}
+                    <a href="?page=1&q={{ request.GET.q.strip }}">&laquo; primeira Pagina</a>
+                    <a href="?page={{ moradores.previous_page_number }}&q={{ request.GET.q.strip }}">Voltar</a>
+                {% endif %}
+
+                <span class="current">
+                    Pagina {{ moradores.number }} de {{ moradores.paginator.num_pages }}.
+                </span>
+
+                {% if moradores.has_next %}
+                    <a href="?page={{ moradores.next_page_number }}&q={{ request.GET.q.strip }}">Proxima Pagina</a>
+                    <a href="?page={{ moradores.paginator.num_pages }}&q={{ request.GET.q.strip }}">Final da Pagina &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
+
+    </div>
+{% endblock content %}

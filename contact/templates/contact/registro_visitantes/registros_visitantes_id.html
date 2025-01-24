@@ -1,0 +1,36 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+    <div class="single-contact">
+        <h1 class="single-contact-name">
+
+            {{ registro_visitante.nome }}
+        </h1>
+        <p><b>ID:</b> {{ registro_visitante.id }}</p>
+        <p><b>Nome:</b> {{ registro_visitante.nome }}</p>
+        <p><b>CPF:</b> {{ registro_visitante.cpf }}</p>
+        <p><b>Telefone:</b> {{ registro_visitante.telefone }}</p>
+        <p><b>Data Registros:</b> {{ registro_visitante.data_registro }}</p>
+        <p><b>Obs:</b> {{ registro_visitante.obs }}</p>
+        
+        {% if registro_visitante.foto %}
+            <p>
+                <img src=" {{ registro_visitante.foto.url }} " alt=" {{ registro_visitante.nome }} ">
+            </p>
+        {% endif %}
+
+
+        <div class="contact-links">
+            <a class="btn btn-link" 
+            href="{% url 'contact:update_registro_de_visitantes' registro_visitante.id  %}">
+             Atualiza Visitante
+             </a>
+             <a class="btn btn-link btn-volta" 
+            href="{% url 'contact:registro_visitantes_index' %}">
+             Volta
+             </a>
+        </div>
+    </div>
+
+{% endblock content %}

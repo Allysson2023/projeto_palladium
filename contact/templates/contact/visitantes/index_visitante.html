@@ -1,0 +1,33 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+    <div class="single-contact">
+        <h1 class="single-contact-name">
+            {{ visitantes.nome }}
+        </h1>
+        <p><b>ID:</b> {{ visitantes.id }}</p>
+        <p><b>Nome:</b> {{ visitantes.nome }}</p>
+        <p><b>Apartamento:</b> {{ visitantes.apartamento }}</p>
+        <p><b>Autorizador por:</b> {{ visitantes.autorizador }}</p>
+        <p><b>ID Registro:</b> {{ visitantes.id_registro }}</p>
+        <p><b>Dia da Entrada:</b> {{ visitantes.data_entrada }}</p>
+        <p><b>Obs:</b> {{ visitantes.obs }}</p>
+        <p><b>Dia da Saida:</b> {{ visitantes.saida }}</p>
+        
+
+        <div class="contact-links">
+            <a class="btn btn-link" 
+            href="{% url 'contact:visitanteIndexUpdate' visitantes.id %}">
+             Atualiza Visitante
+             </a>
+
+             <a class="btn btn-link btn-volta" 
+            href="{% url 'contact:index' %}">
+             Volta
+             </a>
+        </div>
+
+    </div>
+
+{% endblock content %}

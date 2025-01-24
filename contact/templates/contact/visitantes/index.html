@@ -1,0 +1,70 @@
+{% extends "global/base.html" %}
+{% block content %}  
+    <div class="responsive-table">
+        <table class="contacts-table">
+            <caption class="table-caption" >
+                Entrada de Visitantes
+
+                <div class="search">
+                    <form action="{% url 'contact:search' %}" 
+                    method="GET">
+                        <input 
+                        type="text" 
+                        class="search-input"
+                        placeholder="Busca"
+                        id="search"
+                        name="q"
+                        value="{{ request.GET.q.strip }}"
+                        >
+                    </form>
+                </div>
+                
+                <a href="{% url 'contact:create_visitantes' %}" class="header-link">
+                    <h2>Adicionar Visitantes</h2>
+                </a>
+            </caption>
+
+            <thead>
+                <tr class="table-row table-row-header">
+                    <th class="table-header">ID</th>
+                    <th class="table-header">Nome</th>
+                    <th class="table-header">APT</th>
+                    <th class="table-header">ID R.</th>
+                    <th class="table-header">Entrada</th>
+                    <th class="table-header">Saida</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for visitante in page_obj %}
+                  <tr class="table-row">
+                    <td class="table-cel">
+                        {{ visitante.id }}
+                    </td>
+                    <td class="table-cel">
+                        <a href=" {% url 'contact:visitanteIndex' visitante.id %} " 
+                        class="table-link"
+                        >
+                            {{ visitante.nome }}
+                        </a>
+                    </td>
+                    <td class="table-cel">
+                        {{ visitante.apartamento }}
+                    </td>
+                    <td class="table-cel">
+                        
+                        {{ visitante.id_registro }}
+                    </td>
+                    <td class="table-cel">
+                        {{ visitante.data_entrada }}
+                    </td>
+                    <td class="table-cel">
+                        {{ visitante.saida }}
+                    </td>
+                  </tr>
+                {% endfor %}        
+            </tbody>
+        
+        </table>
+    </div>
+{% endblock content %}
