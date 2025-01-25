@@ -5,6 +5,8 @@ from contact.models import Visitante,Registro_de_Visitante, Registros_de_Entrega
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+# Views projetos
+
 @login_required(login_url='contact:login_views')
 def create_visitantes(request):
     form_action = reverse('contact:create_visitantes')
