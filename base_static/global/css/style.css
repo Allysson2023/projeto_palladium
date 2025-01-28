@@ -405,3 +405,71 @@
   font-weight: bold; /* Para destaque */
   text-decoration: none; /* Remove sublinhado */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal {
+  background: #fff;
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.modal h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.modal p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.modal .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.modal button.confirm {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.modal button.confirm:hover {
+  background: #c0392b;
+}
+
+.modal button.cancel {
+  background: #ccc;
+  color: #333;
+}
+
+.modal button.cancel:hover {
+  background: #aaa;
+}

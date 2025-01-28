@@ -1,0 +1,89 @@
+{% extends "global/base.html" %}
+{% block content %}  
+    <div class="responsive-table">
+        <table class="contacts-table">
+            <caption class="table-caption" >
+                Registros de Entregas
+
+                <div class="search">
+                    <form action="{% url "contact:registro_entregas_index_busca" %}" 
+                    method="GET">
+                        <input 
+                        type="text" 
+                        class="search-input"
+                        placeholder="Busca"
+                        id="search"
+                        name="q"
+                        value="{{ request.GET.q.strip }}"
+                        >
+                    </form>
+                </div>
+                
+                <a href="{% url "contact:create_entregas" %}" 
+                class="header-link">
+                    <h2>Adicionar Registros de Entregas</h2>
+                </a>
+            </caption>
+
+            <thead>
+                <tr class="table-row table-row-header">
+                    <th class="table-header">ID</th>
+                    <th class="table-header">Tipos Entregas</th>
+                    <th class="table-header">Destinario</th>
+                    <th class="table-header">Apartamento</th>
+                    <th class="table-header">Data Registros</th>
+                    <th class="table-header">Data da Entrega</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for registro_entrega in registro_entregas %}
+                  <tr class="table-row">
+                    <td class="table-cel">
+                        {{ registro_entrega.id }}
+                    </td>
+                    <td class="table-cel">
+                        {{ registro_entrega.tipos_de_entrega }}
+                    </td>
+                    <td class="table-cel">
+                        <a href="{% url "contact:registro_entregas_index_contato" registro_entrega.id %}" 
+                        class="table-link">
+                            {{ registro_entrega.destino }}
+                        </a>
+                    </td>
+                    <td class="table-cel">
+                        {{ registro_entrega.apartamento }}
+                    </td>
+
+                    <td class="table-cel">    
+                        {{ registro_entrega.data_registro }}
+                    </td>
+                    <td class="table-cel">
+                        {{ registro_entrega.horario_da_entrega }}
+                    </td>
+                  </tr>
+                {% endfor %}        
+            </tbody>
+        </table>
+
+        {% if registro_entregas %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if registro_entregas.has_previous %}
+                    <a href="?page=1&q={{ request.GET.q.strip }}">&laquo; primeira Pagina</a>
+                    <a href="?page={{ registro_entregas.previous_page_number }}&q={{ request.GET.q.strip }}">Voltar</a>
+                {% endif %}
+
+                <span class="current">
+                    Pagina {{ registro_entregas.number }} de {{ registro_entregas.paginator.num_pages }}.
+                </span>
+
+                {% if registro_entregas.has_next %}
+                    <a href="?page={{ registro_entregas.next_page_number }}&q={{ request.GET.q.strip }}">Proxima Pagina</a>
+                    <a href="?page={{ registro_entregas.paginator.num_pages }}&q={{ request.GET.q.strip }}">Final da Pagina &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+{% endblock content %}

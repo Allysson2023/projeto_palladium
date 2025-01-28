@@ -1,0 +1,31 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+    <div class="single-contact">
+        <h1 class="single-contact-name">
+
+            {{ carro.nome_proprietario }}
+        </h1>
+        <p><b>Nome Proprietario:</b> {{ carro.nome_proprietario }}</p>
+        <p><b>Placa:</b> {{ carro.placa }} </p>
+        <p><b>Cor:</b> {{ carro.cor }}</p>
+        <p><b>Modelo:</b> {{ carro.modelo }}</p>
+        <p><b>Apartamento:</b> {{ carro.apartamento }}</p>
+        <p><b>Obs:</b> {{ carro.obs }}</p>
+
+        {% if carro.foto %}
+            <p>
+                <img src=" {{ carro.foto.url }} " alt=" {{ carro.nome_proprietario  }} ">
+            </p>
+        {% endif %}
+        
+        <div class="contact-links">
+             <a class="btn btn-volta" 
+                href="{% url 'contact:carros_index' %}">
+                Volta
+             </a>
+        </div>
+    </div>
+
+{% endblock content %}

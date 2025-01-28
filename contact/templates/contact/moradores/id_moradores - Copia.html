@@ -1,0 +1,32 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+
+    <div class="single-contact">
+        <h1 class="single-contact-name">
+
+            {{ moradore.nome }}
+        </h1>
+        <p><b>ID:</b> {{ moradore.id }}</p>
+        <p><b>Nome:</b> {{ moradore.nome }} </p>
+        <p><b>Telefone:</b> {{ moradore.telefone }}</p>
+        <p><b>Data Nasc.:</b> {{ moradore.data_nascimento }}</p>
+        <p><b>Apartamento:</b> {{ moradore.apartamento }}</p>
+        <p><b>Email:</b> {{ moradore.email }}</p>
+        <p><b>Obs:</b> {{ moradore.obs }}</p>
+
+        {% if moradore.foto %}
+            <p>
+                <img src=" {{ moradore.foto.url }} " alt=" {{ moradore.nome }} ">
+            </p>
+        {% endif %}
+        
+        <div class="contact-links">
+             <a class="btn btn-volta" 
+            href="{% url 'contact:moradores_index' %}">
+             Volta
+             </a>
+        </div>
+    </div>
+
+{% endblock content %}

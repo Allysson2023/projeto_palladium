@@ -1,0 +1,44 @@
+{% extends "global/base.html" %}
+{% block content %}
+<div class="form-wrapper">
+    <h1>Criar Registros do Visitantes</h1>
+    
+    <form 
+      action="{{ form_action_registro_visitantes }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+    {% csrf_token %}
+    <div class="form-content">
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+
+                {% if field.help_text %}
+                    <p class="help-text">{{ field.help_text }}</p>
+                {% endif %}
+            </div>        
+
+            <!-- Exebi a imagem para cria ou atualiza -->
+            {% if field.name == 'foto' and field.value.url %}
+
+            <div class="form-group">
+                    <img src=" {{ field.value.url }} " alt="">
+            </div>        
+
+            {% endif %}
+
+
+        {% endfor %}
+    </div>
+
+    <div class="form-content">
+        <div class="form-group">
+          <button class="btn" type="submit">Cadastrar</button>
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock content %}
