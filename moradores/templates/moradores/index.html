@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Moradores </title>
+    <style>
+       /* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #007bff, #010b69);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.responsive-table {
+    max-width: 1000px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
+}
+
+.contacts-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 600px;
+}
+
+.table-caption {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.search {
+    margin-top: 10px;
+}
+
+.search-input {
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.header-link h2 {
+    font-size: 18px;
+    margin-top: 15px;
+    color: #ff0;
+    text-decoration: none;
+}
+
+.table-row-header {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.table-header {
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.table-row {
+    background: rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+}
+
+.table-row:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.table-cel {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    word-break: break-word;
+}
+
+.table-link {
+    color: #ff0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.table-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .responsive-table {
+        padding: 10px;
+    }
+    .contacts-table {
+        min-width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .search-input {
+        width: 100%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <h1> Voce esta na pagina dos Moradores </h1>
+
+    <div class="responsive-table">
+        <table class="contacts-table">
+            <caption class="table-caption" >
+                Entrada de Visitantes
+
+                <div class="search">
+                    <form action="{% url 'contact:search' %}" 
+                    method="GET">
+                        <input 
+                        type="text" 
+                        class="search-input"
+                        placeholder="Busca"
+                        id="search"
+                        name="q"
+                        value="{{ request.GET.q.strip }}"
+                        >
+                    </form>
+                </div>
+                
+                
+                    <h2> Visitantes Registrado </h2>
+                
+            </caption>
+
+            <thead>
+                <tr class="table-row table-row-header">
+                    <th class="table-header">ID</th>
+                    <th class="table-header">Nome</th>
+                    <th class="table-header">APT</th>
+                    <th class="table-header">ID R.</th>
+                    <th class="table-header">Entrada</th>
+                    <th class="table-header">Saida</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for visitante in moradores %}
+                  <tr class="table-row">
+                    <td class="table-cel">
+                        {{ visitante.id }}
+                    </td>
+                    <td class="table-cel">
+                        <a href=" {% url 'contact:visitanteIndex' visitante.id %} " 
+                        class="table-link"
+                        >
+                            {{ visitante.nome }}
+                        </a>
+                    </td>
+                    <td class="table-cel">
+                        {{ visitante.apartamento }}
+                    </td>
+                    <td class="table-cel">
+                        
+                        {{ visitante.id_registro }}
+                    </td>
+                    <td class="table-cel">
+                        {{ visitante.data_entrada }}
+                    </td>
+                    <td class="table-cel">
+                        {{ visitante.saida }}
+                    </td>
+                  </tr>
+                {% endfor %}        
+            </tbody>
+        
+        </table>
+    </div>
+
+</body>
+</html>
