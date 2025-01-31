@@ -143,16 +143,6 @@ class Registros_de_EntregaForm(forms.ModelForm):
         )
     )
 
-    saida = forms.DateTimeField(
-        widget=forms.DateTimeInput(
-            attrs={
-                'type': 'datetime-local',  # Exibe o calendário com horário
-                'class': 'form-control',
-                'placeholder':'Coloque a data de saida'
-            }
-        ),
-        required=False, help_text='Ao Click no campo selecione a data e o horario'
-    )
     foto_recebendo= forms.ImageField(
         widget=forms.FileInput(
             attrs={
@@ -169,6 +159,16 @@ class Registros_de_EntregaForm(forms.ModelForm):
         required=False,
     )
     
+    horario_da_entrega = forms.DateTimeField(
+        widget=forms.DateTimeInput(
+            attrs={
+                'type': 'datetime-local',  # Exibe o calendário com horário
+                'class': 'form-control',
+                'placeholder':'Coloque a data de saida'
+            }
+        ),
+        required=False, help_text='Ao Click no campo selecione a data e o horario'
+    )
     quem_recebeu = forms.CharField(
         required=False,  # Torna o campo opcional
         widget=forms.TextInput(
@@ -185,7 +185,7 @@ class Registros_de_EntregaForm(forms.ModelForm):
         fields = (
             'tipos_de_entrega', 'codigo_de_rastreamento', 'destino',
             'apartamento', 'data_registro', 'obs','foto_recebendo', 
-            'foto_entrega', 
+            'foto_entrega', 'horario_da_entrega',
             'quem_recebeu',
         )
 

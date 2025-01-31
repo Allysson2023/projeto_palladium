@@ -82,6 +82,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # Define o MySQL como banco de dados
+#         'NAME': 'projeto_palladium',             # Nome do banco de dados
+#         'USER': 'projeto_palladium',             # Nome do usuário do banco
+#         'PASSWORD': '1122',                   # Senha do usuário
+#         'HOST': 'localhost',                  # Host do banco (local)
+#         'PORT': '3306',                       # Porta padrão do MySQL
+#     }
+# }
 
 
 # Password validation
