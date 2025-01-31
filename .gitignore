@@ -1,13 +1,13 @@
-*.pyc
-__pycache__/
+# *.pyc
+# __pycache__/
 # Django #
 *.log
 *.pot
 *.pyc
-__pycache__
-db.sqlite3
-media
-local_settings.py
+__pycache__/
+# db.sqlite3
+# media
+# local_settings.py
 
 # Backup files # 
 *.bak 
@@ -108,6 +108,10 @@ venv/
 ENV/ 
 env.bak/ 
 venv.bak/ 
+
+db.sqlite3
+media
+local_settings.py
 
 # mkdocs documentation 
 /site 
