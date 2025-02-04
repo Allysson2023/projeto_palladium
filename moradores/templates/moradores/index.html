@@ -5,7 +5,7 @@
 
 <body>
     {% include "cabecario/menu.html" %}
-
+    {% include "cabecario/_messagen.html" %}
     <div class="responsive-table">
         <table class="contacts-table">
             <caption class="table-caption" >
@@ -42,7 +42,7 @@
             </thead>
             
             <tbody>
-                {% for visitante in moradores %}
+                {% for visitante in page_obj %}
                   <tr class="table-row">
                     <td class="table-cel">
                         {{ visitante.id }}
@@ -70,8 +70,8 @@
                   </tr>
                 {% endfor %}        
             </tbody>
-            {% include "cabecario/_pagination.html" %}
         </table>
+        {% include "cabecario/_pagination.html" %}
     </div>
 
 </body>

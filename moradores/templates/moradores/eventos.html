@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    {% include "cabecario/_base.html" %}
+
+<body>
+    {% include "cabecario/menu.html" %}
+    {% include "cabecario/_messagen.html" %}
+<div class="responsive-table">
+    <table class="contacts-table">
+        <caption class="table-caption" >
+            Agendamentos de Eventos
+
+            <div class="search">
+                <form action="{% url "moradores:eventos_busca" %}" 
+                method="GET">
+                    <input 
+                    type="text" 
+                    class="search-input"
+                    placeholder="Busca"
+                    id="busca_evento"
+                    name="q"
+                    value="{{ request.GET.q.strip }}"
+                    >
+                </form>
+            </div>
+            
+            
+            <h2> Eventos Cadastrado </h2>
+            
+        </caption>
+
+        <thead>
+            <tr class="table-row table-row-header">
+                <th class="table-header">ID</th>
+                <th class="table-header">Nome</th>
+                <th class="table-header">Local do Evento</th>
+                <th class="table-header">Dia e Horario do Evento</th>
+                <th class="table-header">Final do Evento</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for agenda in page_obj %}
+              <tr class="table-row">
+
+                <td class="table-cel">
+                    {{ agenda.id }}
+                </td>
+
+                <td class="table-cel">
+                    <a href="{% url "moradores:eventos_id" agenda.id%}" 
+                    class="table-link"
+                    >
+                    {{ agenda.nome_responsavel }}
+                </a>
+            </td>
+            
+            <td class="table-cel">
+                    {{ agenda.local_evento }}
+                </td>
+
+                <td class="table-cel">
+                    {{ agenda.data_horas_evento }}
+                </td>
+
+                <td class="table-cel">
+                    {{ agenda.horario_final_evento }}
+                </td>
+
+              </tr>
+            {% endfor %}        
+        </tbody>
+    
+    </table> {% include "cabecario/_pagination.html" %}
+</div>
+
+</body>
+</html>

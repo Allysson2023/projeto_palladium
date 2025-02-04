@@ -175,7 +175,7 @@ def eventos_busca(request):
     if busca_evento == '':
         return redirect('contact:eventos')
     
-    agenda = Eventos.objects.filter(local_evento__icontains = busca_evento ).order_by('-id')
+    agenda = Eventos.objects.filter(nome_responsavel__icontains = busca_evento ).order_by('-id')
     
     paginator = Paginator(agenda, 10)
     page_number = request.GET.get("page")

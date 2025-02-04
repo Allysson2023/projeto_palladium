@@ -3,6 +3,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Moradores </title>
     <style>
+
+        :root {
+            --spacing: 1.5rem;
+            --link-dark-color: rgb(255, 255, 255);
+            --link-light-color: rgb(156, 217, 255);
+            --clr-white: rgb(245, 245, 255);
+            --clr-black: rgb(0, 0, 30);
+            --clr-light-gray: rgb(230, 230, 245);
+            --clr-dark-shadow-5: rgba(0, 0, 10, 5%);
+            --clr-dark-shadow-10: rgba(0, 0, 10, 10%);
+            --clr-dark-shadow-20: rgba(0, 0, 10, 20%);
+            --clr-light-shadow-5: rgba(200, 200, 255, 5%);
+            --clr-light-shadow-10: rgba(200, 200, 255, 10%);
+            --clr-light-shadow-20: rgba(200, 200, 255, 20%);
+            --main-page-width: 120rem;
+            --table-min-width: 60rem;
+            --biggest-font-size: 5rem;
+            --bigger-font-size: 4rem;
+            --big-font-size: 3.2rem;
+            --medium-font-size: 2.4rem;
+            --small-font-size: 1.6rem;
+            --smaller-font-size: 1.4rem;
+            --smallest-font-size: 1.2rem;
+            --transition-fast: 300ms;
+            --transition-medium: 600ms;
+            --transition-slow: 1s;
+            --default-border-radius: 4px;
+          }
        /* Reset básico */
        * {
            margin: 0;
@@ -174,6 +202,54 @@
       }
       .btn-delete {
         background: rgb(239, 24, 24);
+      }
+      .pagination {
+        margin-top: var(--spacing);
+        display: flex;
+        justify-content: center;
+        padding: calc(var(--spacing) * 0.8);
+        font-size: var(--small-font-size);
+      }
+      
+      .pagination .step-links {
+        display: flex;
+        gap: calc(var(--spacing) * 0.8);
+      }
+      
+      .pagination .step-links a {
+        color: var(--link-dark-color);
+        transition: color var(--transition-fast) ease-in-out;
+        text-decoration: none;
+        display: block;
+      }
+
+      .message {
+        max-width: 600px;
+        margin: var(--spacing) auto;
+        margin-top: calc(var(--spacing) * 2);
+        padding: var(--spacing);
+        text-align: center;
+        border-radius: var(--default-border-radius);
+        font-size: var(--smaller-font-size);
+      }
+      
+      .message.success {
+        background: rgba(0, 255, 0, 0.3);
+        border: 1px solid rgba(0, 255, 0, 90%);
+      }
+      
+      .message.error {
+        background: rgba(255, 0, 0, 0.3);
+        border: 1px solid rgba(255, 0, 0, 90%);
+      }
+      
+      .message.warning {
+        background: rgba(255, 255, 0, 0.3);
+        border: 1px solid rgba(255, 255, 0, 90%);
+      }
+      .message.info {
+        background: rgba(8, 0, 255, 0.3);
+        border: 1px solid rgba(162, 162, 0, 0.9);
       }
 
     </style>

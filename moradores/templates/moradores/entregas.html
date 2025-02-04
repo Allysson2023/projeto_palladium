@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    {% include "cabecario/_base.html" %}
+
+<body>
+    {% include "cabecario/menu.html" %}
+    {% include "cabecario/_messagen.html" %}
+
+<div class="responsive-table">
+    <table class="contacts-table">
+        <caption class="table-caption" >
+            Registros de Entregas
+
+            <div class="search">
+                <form action="" 
+                method="GET">
+                    <input 
+                    type="text" 
+                    class="search-input"
+                    placeholder="Busca"
+                    id="search"
+                    name="q"
+                    value="{{ request.GET.q.strip }}"
+                    >
+                </form>
+            </div>
+
+                <h2>Adicionar Registros de Entregas</h2>
+            
+        </caption>
+
+        <thead>
+            <tr class="table-row table-row-header">
+                <th class="table-header">ID</th>
+                <th class="table-header">Tipos Entregas</th>
+                <th class="table-header">Destinario</th>
+                <th class="table-header">Data Registros</th>
+                <th class="table-header">Data da Entrega</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for registro_entrega in page_obj %}
+              <tr class="table-row">
+                <td class="table-cel">
+                    {{ registro_entrega.id }}
+                </td>
+                <td class="table-cel">
+                    {{ registro_entrega.tipos_de_entrega }}
+                </td>
+                <td class="table-cel">
+                    <a href="" 
+                    class="table-link">
+                        {{ registro_entrega.destino }}
+                    </a>
+                </td>
+
+                <td class="table-cel">    
+                    {{ registro_entrega.data_registro }}
+                </td>
+                
+                <td class="table-cel">
+                    {{ registro_entrega.horario_da_entrega }}
+                </td>
+              </tr>
+            {% endfor %}        
+        </tbody>
+    </table> 
+    {% include "cabecario/_pagination.html" %}
+</div>
+
+</body>
+</html>

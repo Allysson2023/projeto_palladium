@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "cabecario/_base.html" %}
+</head>
+<body>
+    {% include "cabecario/menu.html" %}
+    <div class="single-contact">
+        <h1 class="single-contact-name">
+
+            {{ id_eventos.local_evento }}
+        </h1>
+        <p><b>Local do Evento:</b> {{ id_eventos.local_evento }}</p>
+        <p><b>Nome do Responsavel:</b> {{ id_eventos.nome_responsavel }} </p>
+        <p><b>Tipo de Evento:</b> {{ id_eventos.tipo_de_evento }}</p>
+        <p><b>Apartamento:</b> {{ id_eventos.apartamento }}</p>
+        <p><b>Dia e Hora:</b> {{id_eventos.data_horas_evento }}</p>
+        <p><b>Horario Final do Evento:</b> {{ id_eventos.horario_final_evento }}</p>
+        <p><b>Nomes de Pessoas autorizados:</b> {{ id_eventos.nomes_autorizados }}</p>
+        <p><b>Obs:</b> {{ id_eventos.veiculos_autorizados }}</p>
+    
+        <div class="contact-links">
+    
+             <a class="btn btn-link btn-volta" 
+            href="{% url 'moradores:eventos' %}">
+             Volta
+             </a>
+             
+        </div>
+    
+    </div>
+</body>
+</html>
