@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "cabecario/_base.html" %}
+</head>
+<body>
+    {% include "cabecario/menu.html" %}
+    <div class="single-contact">
+        <h1 class="single-contact-name">
+            {{ visitantes.nome }}
+        </h1>
+        <p><b>ID:</b> {{ visitantes.id }}</p>
+        <p><b>Nome:</b> {{ visitantes.nome }}</p>
+        <p><b>Categoria:</b> {{ visitantes.categoria }}</p>
+        <p><b>Apartamento:</b> {{ visitantes.apartamento }}</p>
+        <p><b>Autorizador por:</b> {{ visitantes.autorizador }}</p>
+        <p><b>ID Registro:</b> {{ visitantes.id_registro }}</p>
+        <p><b>Dia da Entrada:</b> {{ visitantes.data_entrada }}</p>
+        <p><b>Obs:</b> {{ visitantes.obs }}</p>
+        {% if visitantes.saida == none %}
+            <p> Continua no Apartamento
+        {% else %}
+            <p><b>Dia da Saida:</b> {{ visitantes.saida }}</p>
+        {% endif %}
+        
+    
+        <div class="contact-links">
+    
+             <a class="btn btn-link btn-volta" 
+            href="{% url 'moradores:indexMoradores' %}">
+             Volta
+             </a>
+             
+        </div>
+    
+    </div>
+</body>
+</html>

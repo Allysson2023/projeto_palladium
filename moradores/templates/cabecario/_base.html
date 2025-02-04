@@ -1,0 +1,180 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Moradores </title>
+    <style>
+       /* Reset básico */
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: Arial, sans-serif;
+       }
+
+       body {
+           background: linear-gradient(135deg, #007bff, #010b69);
+           color: #fff;
+           text-align: center;
+           padding: 20px;
+       }
+
+       h1 {
+           margin-bottom: 20px;
+           font-size: 28px;
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+       }
+
+       .menu {
+           display: flex;
+           justify-content: center;
+           gap: 20px;
+           padding: 10px 0;
+       }
+
+       .menu-item {
+           list-style: none;
+       }
+
+       .menu-link {
+           color: #ff0;
+           text-decoration: none;
+           font-size: 20px;
+           font-weight: bold;
+       }
+
+       .menu-link:hover {
+           text-decoration: underline;
+       }
+
+       .responsive-table {
+           max-width: 1000px;
+           margin: auto;
+           background: rgba(255, 255, 255, 0.1);
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+           overflow-x: auto;
+       }
+
+       .contacts-table {
+           width: 100%;
+           border-collapse: collapse;
+           border-radius: 10px;
+           overflow: hidden;
+           min-width: 600px;
+       }
+
+       .table-caption {
+           font-size: 22px;
+           font-weight: bold;
+           padding: 15px;
+       }
+
+       .table-header {
+           padding: 15px;
+           text-transform: uppercase;
+           font-weight: bold;
+       }
+
+       .table-row {
+           background: rgba(255, 255, 255, 0.2);
+           transition: 0.3s;
+       }
+
+       .table-row:hover {
+           background: rgba(255, 255, 255, 0.4);
+       }
+
+       .table-cel {
+           padding: 12px;
+           border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+           word-break: break-word;
+       }
+
+       .table-link {
+           color: #ff0;
+           text-decoration: none;
+           font-weight: bold;
+       }
+
+       .table-link:hover {
+           text-decoration: underline;
+       }
+
+       @media (max-width: 768px) {
+           .menu {
+               flex-direction: column;
+               align-items: center;
+           }
+           .responsive-table {
+               padding: 10px;
+           }
+           .contacts-table {
+               min-width: 100%;
+               display: block;
+               overflow-x: auto;
+               white-space: nowrap;
+           }
+       }
+       .search {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .search-input {
+        padding: 10px;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .single-contact h1 {
+        margin: 1rem 0;
+      }
+      
+      .single-contact p {
+        margin: 1rem 0;
+      }
+      
+      .pagination {
+        margin-top: var(--spacing);
+        display: flex;
+        justify-content: center;
+        padding: calc(var(--spacing) * 0.8);
+        font-size: var(--small-font-size);
+      }
+      
+      .pagination .step-links {
+        display: flex;
+        gap: calc(var(--spacing) * 0.8);
+      }
+      
+      .pagination .step-links a {
+        color: var(--link-dark-color);
+        transition: color var(--transition-fast) ease-in-out;
+        text-decoration: none;
+        display: block;
+      }
+
+      .btn-link {
+        font-size: var(--small-font-size);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 1rem;
+        display: block;
+        line-height: var(--small-font-size);
+      }
+      
+      .btn-volta {
+        background: rgb(130, 230, 125);
+      }
+      .btn-delete {
+        background: rgb(239, 24, 24);
+      }
+
+    </style>
+</head>
