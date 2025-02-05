@@ -1,5 +1,5 @@
     
-    
+    {% if user.is_authenticated %}
 
     <ul class="menu">
         <li class="menu-item"> <a href="{% url 'moradores:indexMoradores' %}" class="menu-link"> Sistema Patrimonial - Moradores</a> </li>
@@ -16,8 +16,15 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{% url "moradores:login_views_moradores" %}" class="menu-link">
                 <h2  >Sair do Sistema</h2>
             </a>
         </li>
     </ul>
+
+    {% else %}
+        <h1 class="header-heading">
+            Bem vindo ao Sistema
+        </h1>
+        
+    {% endif %}

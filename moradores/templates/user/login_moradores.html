@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    {% include "cabecario/_base.html" %}
+
+<body>
+    
+    
+    {% include "cabecario/menu.html" %}
+    {% include "cabecario/_messagen.html" %}
+
+
+    <h1>Acesso dos Moradores </h1>
+
+    {% if user.is_authenticated  %}
+    <h2>
+        
+        Voce esta logado com {{ user.username }}, Voce tem certeza que deseja sair? 
+        
+    </h2>
+    <a class="btn2 btn-link" 
+        href="{% url 'moradores:logaut_views_moradores'%}">
+            Sair.
+    </a><br>
+    
+    
+        <a class="btn1 btn-link" 
+       href="{% url 'moradores:indexMoradores' %}">
+        Volta
+        </a>
+
+    {% else %}
+        {% include "perfil/user_form.html" %}
+
+    
+    {% endif %}
+
+</div>
+
+</body>
+</html>
+

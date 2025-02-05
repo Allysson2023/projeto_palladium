@@ -13,20 +13,20 @@
             Registros de Entregas
 
             <div class="search">
-                <form action="" 
+                <form action=" {% url "moradores:entregas_busca" %} " 
                 method="GET">
                     <input 
                     type="text" 
                     class="search-input"
                     placeholder="Busca"
-                    id="search"
+                    id="busca_entrega"
                     name="q"
                     value="{{ request.GET.q.strip }}"
                     >
                 </form>
             </div>
 
-                <h2>Adicionar Registros de Entregas</h2>
+                <h2>Entregas</h2>
             
         </caption>
 
@@ -50,7 +50,7 @@
                     {{ registro_entrega.tipos_de_entrega }}
                 </td>
                 <td class="table-cel">
-                    <a href="" 
+                    <a href=" {% url "moradores:entregas_id" registro_entrega.id %} " 
                     class="table-link">
                         {{ registro_entrega.destino }}
                     </a>

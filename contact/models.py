@@ -31,6 +31,7 @@ class Carro(models.Model):
         return self.nome_proprietario
 
 class Moradore(models.Model):
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
     nome = models.CharField(max_length=245)
     cpf = models.CharField(max_length=25)
     foto = models.ImageField(blank=True, upload_to='pictures/%Y/%m/%d')

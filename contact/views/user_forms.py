@@ -3,8 +3,32 @@ from contact.forms import RegisterForm, RegistrorUpadateForm
 from django.contrib import messages, auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from functools import wraps
 
-@login_required(login_url='contact:login_views')
+# Decorador para restringir acesso apenas a porteiros
+def porteiro_required(view_func):
+    @wraps(view_func)
+    @login_required
+    def _wrapped_view(request, *args, **kwargs):
+        if not hasattr(request.user, 'Porteiro'):  # Verifica se o usuário tem um perfil de porteiro
+            return redirect('user:login_views')  # Redireciona para login de porteiros se não for
+        return view_func(request, *args, **kwargs)
+    
+    return _wrapped_view
+
+
+
+
+
+
+
+
+
+
+
+
+
+@porteiro_required
 def register(request):
     form = RegisterForm()
 
@@ -24,7 +48,8 @@ def register(request):
             'form':form
         }
     )
-@login_required(login_url='contact:login_views')
+
+@porteiro_required
 def user_update(request):
     form = RegistrorUpadateForm(instance=request.user)
 
@@ -73,7 +98,7 @@ def login_views(request):
         }
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def logaut_views(request):
     auth.logout(request)
     messages.info(request, 'Você saiu do Sistema!')

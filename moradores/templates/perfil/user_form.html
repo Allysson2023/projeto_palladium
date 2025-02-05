@@ -1,0 +1,25 @@
+<form 
+      action="{{ form_action }}"
+      method="POST"
+    >
+    {% csrf_token %}
+    <div class="login_moradores">
+        {% for field in form %}
+            <div class="moradores">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+
+                {% if field.help_text %}
+                    <p class="moradores_logins">{{ field.help_text }}</p>
+                {% endif %}
+            </div>        
+        {% endfor %}
+    </div>
+
+    <div class="form-content">
+        <div class="form-group">
+          <button class="btn1" type="submit">Entra no Sistema</button>
+        </div>
+    </div>
+    </form>

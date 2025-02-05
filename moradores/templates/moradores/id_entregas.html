@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "cabecario/_base.html" %}
+</head>
+<body>
+    {% include "cabecario/menu.html" %}
+
+<div class="single-contact">
+    <h1 class="single-contact-name">
+
+        {{ registro_entregas.destino }}
+    </h1>
+    <p><b>ID:</b> {{ registro_entregas.id }}</p>
+    <p><b>Tipos de Entregas:</b> {{ registro_entregas.tipos_de_entrega }}</p>
+    <p><b>Codigo de Rastreamento:</b> {{ registro_entregas.codigo_de_rastreamento }}</p>
+    <p><b>Destino:</b> {{ registro_entregas.destino }}</p>
+    <p><b>Apartamento:</b> {{ registro_entregas.apartamento }}</p>
+    <p><b>Data Registros:</b> {{ registro_entregas.data_registro }}</p>
+    <p><b>Obs:</b> {{ registro_entregas.obs }}</p>
+
+    {% if registro_entregas.foto_recebendo %}
+        <p>
+            <img class="img-responsive" src=" {{ registro_entregas.foto_recebendo.url }} " alt=" {{ registro_entregas.destino }} ">
+        </p>
+    {% endif %}
+    {% if registro_entregas.foto_entrega %}
+        <p>
+            <img class="img-responsive" src=" {{ registro_entregas.foto_entrega.url }} " alt=" {{ registro_entregas.id }} ">
+        </p>
+    {% endif %}
+
+    <p><b>Data da Entrega:</b> {{ registro_entregas.horario_da_entrega }}</p>
+    <p><b>Quem Recebeu:</b> {{ registro_entregas.quem_recebeu }}</p>
+    
+    
+        <div class="contact-links">
+    
+             <a class="btn btn-link btn-volta" 
+            href="{% url 'moradores:entregas' %}">
+             Volta
+             </a>
+             
+        </div>
+    
+    </div>
+</body>
+</html>
