@@ -4,8 +4,9 @@ from django.urls import reverse
 from contact.models import Visitante,Registro_de_Visitante, Registros_de_Entrega, Ocorrencia, Eventos
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from contact.views.user_forms import *
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def create_visitantes(request):
     form_action = reverse('contact:create_visitantes')
 
@@ -38,7 +39,7 @@ def create_visitantes(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def create_eventos(request):
     form_action = reverse('contact:create_eventos')
     if request.method == 'POST':
@@ -68,7 +69,7 @@ def create_eventos(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def visitanteIndexUpdate(request, visitante_id):
     visitante = get_object_or_404(Visitante, pk=visitante_id)
 
@@ -104,7 +105,7 @@ def visitanteIndexUpdate(request, visitante_id):
     )
 
 # Formulario de registro de visitantes
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def create_registro_de_visitantes(request):
     form_action_registro_visitantes = reverse('contact:create_registro_de_visitantes')
 
@@ -140,7 +141,7 @@ def create_registro_de_visitantes(request):
     )
 
 # Formulario de update do registro de visitantes
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def update_registro_de_visitantes(request, registro_id):
     registro = get_object_or_404(Registro_de_Visitante, pk=registro_id)
 
@@ -171,7 +172,7 @@ def update_registro_de_visitantes(request, registro_id):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def entregas(request):
     form_action_registro_entregas = reverse('contact:create_entregas')
     if request.method == 'POST':
@@ -199,7 +200,7 @@ def entregas(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def update_entregas(request, entregas_id):
     entrega_update = get_object_or_404(Registros_de_Entrega, pk=entregas_id)
 
@@ -234,7 +235,7 @@ def update_entregas(request, entregas_id):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def ocorrenciaIndex(request):
     form_action_ocorrecia = reverse('contact:ocorrenciaIndex')
     if request.method == 'POST':
@@ -264,7 +265,7 @@ def ocorrenciaIndex(request):
         context
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def ocorrenciaUpdate(request, id_ocorrencia):
     ocorrencia_update = get_object_or_404(Ocorrencia, pk=id_ocorrencia, owner=request.user)
     form_action_ocorrecia = reverse('contact:ocorrenciaUpdate', args=(id_ocorrencia,))
@@ -293,7 +294,7 @@ def ocorrenciaUpdate(request, id_ocorrencia):
         context
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def update_eventos(request, eventos_id):
     update_eventos = get_object_or_404(Eventos, pk=eventos_id)
     form_action = reverse('contact:update_eventos', args=(eventos_id,))

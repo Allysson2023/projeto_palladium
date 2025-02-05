@@ -4,14 +4,16 @@ from django.contrib import messages, auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from functools import wraps
+from django.contrib.auth.models import Group
 
 # Decorador para restringir acesso apenas a porteiros
 def porteiro_required(view_func):
     @wraps(view_func)
     @login_required
     def _wrapped_view(request, *args, **kwargs):
-        if not hasattr(request.user, 'Porteiro'):  # Verifica se o usuário tem um perfil de porteiro
-            return redirect('user:login_views')  # Redireciona para login de porteiros se não for
+        if not request.user.groups.filter(name="porteiro").exists():  # Verifica se o usuário está no grupo 'porteiro'
+            messages.error(request, 'Acesso negado! Apenas porteiros podem acessar esta área.')
+            return redirect('contact:login_views')  # Redireciona para login se não for porteiro
         return view_func(request, *args, **kwargs)
     
     return _wrapped_view
@@ -85,8 +87,14 @@ def login_views(request):
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            messages.success(request, 'Bem Vindo ao Sistema Patrimonial!')
-            return redirect('contact:index')
+
+            if user.groups.filter(name="porteiro").exists():  # Verifica se o usuário pertence ao grupo 'porteiro'
+                messages.success(request, 'Bem-vindo ao sistema da portaria!')
+                return redirect('contact:index')  # Redirecione para a página inicial da portaria
+
+            messages.error(request, 'Acesso negado! Apenas porteiros podem acessar esta área.')
+            auth.logout(request)
+            return redirect('contact:login_views')  # Se não for porteiro, faz logout e redireciona
 
         messages.error(request, 'Login inválido')
 
@@ -94,7 +102,7 @@ def login_views(request):
         request,
         'contact/user/login.html',
         {
-            'form':form
+            'form': form
         }
     )
 

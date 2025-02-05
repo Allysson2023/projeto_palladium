@@ -10,12 +10,14 @@ from functools import wraps
 # Decorador para garantir que apenas moradores acessem
 def morador_required(view_func):
     @wraps(view_func)
-    @login_required(login_url='moradores:login_views_moradores')  # Redireciona para login se não estiver autenticado
+    @login_required(login_url='moradores:login_views_moradores')  # Exige login
     def _wrapped_view(request, *args, **kwargs):
-        if not hasattr(request.user, 'moradore'):  # Verifica se o usuário é um morador
-            return redirect('moradores:login_views_moradores')
+        if not hasattr(request.user, 'moradore'):  # Se não for morador
+            messages.error(request, 'Acesso negado! Somente moradores podem acessar esta área.')  
+            return redirect('moradores:login_views_moradores')  # Redireciona para a página inicial ou login dos porteiros
+
         return view_func(request, *args, **kwargs)
-    
+
     return _wrapped_view
 
 @morador_required

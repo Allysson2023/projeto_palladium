@@ -4,10 +4,10 @@ Registros_de_Entrega, Moradore, Carro, Ocorrencia, Eventos
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-
+from contact.views.user_forms import *
 #  Pagina do Index do Visitantes
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def index(request):
     visitantes = Visitante.objects.filter().order_by('-id')
 
@@ -26,7 +26,7 @@ def index(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def eventos(request):
     agenda = Eventos.objects.filter().order_by('-id')
     
@@ -47,7 +47,7 @@ def eventos(request):
 
 
 # Index de Registro de Visitante
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def registro_visitantes_index(request):
     registro_visitantes = Registro_de_Visitante.objects.filter().order_by('-id')
 
@@ -69,7 +69,7 @@ def registro_visitantes_index(request):
 
 
 #  Pagina do Index do Registro de Entregas
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def registro_entregas_index(request):
     registro_entregas = Registros_de_Entrega.objects.filter().order_by('-id')
 
@@ -89,7 +89,7 @@ def registro_entregas_index(request):
     )
 
 # Moradore Index
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def moradores_index(request):
     moradores = Moradore.objects.filter().order_by('-id')
     
@@ -108,7 +108,7 @@ def moradores_index(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def carros_index(request):
     carros = Carro.objects.filter().order_by('-id')
 
@@ -126,7 +126,7 @@ def carros_index(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def ocorrencias_index(request):
     ocorrencias = Ocorrencia.objects.filter().order_by('-id')
     paginator = Paginator(ocorrencias, 12)
@@ -145,7 +145,7 @@ def ocorrencias_index(request):
 
 
 # Busca listas do Visitantes
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def search(request):
     search_value = request.GET.get('q', '').strip()
     if search_value == '':
@@ -169,7 +169,7 @@ def search(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def eventos_busca(request):
     busca_evento = request.GET.get('q', '').strip()
     if busca_evento == '':
@@ -193,7 +193,7 @@ def eventos_busca(request):
     )
 
 # Busca  listas Registro do Visitantes
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def registro_visitantes_index_busca(request):
     
     busca_registro_visitantes = request.GET.get('q', '').strip()
@@ -219,7 +219,7 @@ def registro_visitantes_index_busca(request):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def registro_entregas_index_busca(request):
     busca_registro_entregas = request.GET.get('q', '').strip()
 
@@ -248,7 +248,7 @@ def registro_entregas_index_busca(request):
 
 
 # Busca Lista de carros
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def carros_index_busca(request):
     busca_carro = request.GET.get('q', '').strip()
     
@@ -280,7 +280,7 @@ def carros_index_busca(request):
     )
 
 # Busca Ocorrencias
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def ocorrencias_index_busca(request):
     busca_ocorrencia = request.GET.get('q', '').strip()
     if busca_ocorrencia == '':
@@ -309,7 +309,7 @@ def ocorrencias_index_busca(request):
 
 
 # Busca Lista Moradores
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def moradores_index_busca(request):
     busca_moradores = request.GET.get('q', '').strip()
     if busca_moradores == '':
@@ -334,7 +334,7 @@ def moradores_index_busca(request):
     )
 
 # Busca id do Visitantes
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def visitanteIndex(request, visitante_id):
     visitanteIndex = get_object_or_404(Visitante, pk=visitante_id)
 
@@ -354,7 +354,7 @@ def visitanteIndex(request, visitante_id):
     )
 
 # Busca id do Registro do Visitantes
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def registro_visitantes_index_contato(request, registro_id):
     single_registro_visitantes = get_object_or_404(Registro_de_Visitante,\
                                                    pk=registro_id)
@@ -373,7 +373,7 @@ def registro_visitantes_index_contato(request, registro_id):
 
 
 #  Busca ID do Registro de Entregas
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def registro_entregas_index_contato(request, entregas_id):
     busca_registro_entregas = get_object_or_404(Registros_de_Entrega, \
                                                 pk=entregas_id)
@@ -390,7 +390,7 @@ def registro_entregas_index_contato(request, entregas_id):
     )
 
 # Busca Id do Moradores
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def moradores_index_id(request, moradores_id):
     id_moradores =get_object_or_404(Moradore, pk=moradores_id)
 
@@ -406,7 +406,7 @@ def moradores_index_id(request, moradores_id):
     )
 
 # Busca Id do Carro
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def carros_index_id(request, carro_id):
     id_carros = get_object_or_404(Carro, pk=carro_id)
     context = {
@@ -419,7 +419,7 @@ def carros_index_id(request, carro_id):
         context,
     )
 
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def eventos_id(request, eventos_id):
     id_eventos = get_object_or_404(Eventos, pk=eventos_id)
     context = {
@@ -435,7 +435,7 @@ def eventos_id(request, eventos_id):
 
 
 # id das ocorrencia
-@login_required(login_url='contact:login_views')
+@porteiro_required
 def ocorrencias_index_id(request, id_ocorrencia):
     id_ocorrencias = get_object_or_404(Ocorrencia, pk=id_ocorrencia)
     
