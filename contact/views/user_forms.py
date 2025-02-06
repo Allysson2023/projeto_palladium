@@ -19,17 +19,6 @@ def porteiro_required(view_func):
     return _wrapped_view
 
 
-
-
-
-
-
-
-
-
-
-
-
 @porteiro_required
 def register(request):
     form = RegisterForm()
