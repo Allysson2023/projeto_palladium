@@ -4,7 +4,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from functools import wraps
-from django.contrib.auth.models import Group
+
 
 # Decorador para restringir acesso apenas a porteiros
 def porteiro_required(view_func):

@@ -20,6 +20,7 @@ def morador_required(view_func):
 
     return _wrapped_view
 
+
 @morador_required
 def indexMoradores(request):
     morador = request.user.moradore
